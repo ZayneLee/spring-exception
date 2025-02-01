@@ -1,5 +1,5 @@
 <h1 align="center">안녕하세요 👋, 개발자 이성도 입니다.</h1>
-<h3 align="center">Welcome to Seongdo's Spring Web Application</h3>
+<h3 align="center">Welcome to Seongdo's Spring Web Application</h3>
 
 ---
 
