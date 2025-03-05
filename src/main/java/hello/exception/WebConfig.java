@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,6 +14,10 @@ import hello.exception.filter.LogFilter;
 import hello.exception.interceptor.LogInterceptor;
 import hello.exception.resolver.MyHandlerExceptionResolver;
 import hello.exception.resolver.UserHandlerExceptionResolver;
+import hello.exception.typeconverter.converter.IntegerToStringConverter;
+import hello.exception.typeconverter.converter.IpPortToStringConverter;
+import hello.exception.typeconverter.converter.StringToIntegerConveter;
+import hello.exception.typeconverter.converter.StringToIpPortConveter;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 
@@ -42,6 +47,14 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
         return filterRegistrationBean;
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new StringToIntegerConveter());
+        registry.addConverter(new IntegerToStringConverter());
+        registry.addConverter(new StringToIpPortConveter());
+        registry.addConverter(new IpPortToStringConverter());
     }
 
 }
