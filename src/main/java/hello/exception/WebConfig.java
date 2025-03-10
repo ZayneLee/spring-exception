@@ -18,6 +18,7 @@ import hello.exception.typeconverter.converter.IntegerToStringConverter;
 import hello.exception.typeconverter.converter.IpPortToStringConverter;
 import hello.exception.typeconverter.converter.StringToIntegerConveter;
 import hello.exception.typeconverter.converter.StringToIpPortConveter;
+import hello.exception.typeconverter.formatter.MyNumberFormatter;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 
@@ -51,10 +52,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToIntegerConveter());
-        registry.addConverter(new IntegerToStringConverter());
+        // registry.addConverter(new StringToIntegerConveter());
+        // registry.addConverter(new IntegerToStringConverter());
         registry.addConverter(new StringToIpPortConveter());
         registry.addConverter(new IpPortToStringConverter());
+
+        registry.addFormatter(new MyNumberFormatter());
     }
 
 }
